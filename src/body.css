@@ -24,19 +24,28 @@ body {
   .name-heading {
     color: white;
     font-size: 4.5rem;
-    margin-bottom: 1.5rem; /* reduced from 10rem to bring the summary closer */
+    margin-bottom: 1.5rem;
     font-family: "Winky Rough", sans-serif;
     font-optical-sizing: auto;
     font-weight: 900;
     font-style: italic;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+    text-shadow:
+      3px 3px 6px rgba(0, 0, 0, 0.4), /* existing shadow */
+      -1px -1px 0 #000,
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000; /* creates a fake outline */
     line-height: 1.1;
+    animation: backInLeft 1s ;
+    -webkit-text-stroke: 1px black; /* real outline for WebKit browsers */
+    margin-left: 48px;
   }
+  
   
   .summary {
     margin-bottom: 10rem; /* kept this bottom margin as is */
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     background-color: rgba(255, 255, 255, 0.1);
     padding: 1.2rem 1.5rem;
     border-radius: 12px;
@@ -46,10 +55,14 @@ body {
     font-weight: 300;
     font-style: normal;
     font-variation-settings: "wdth" 100;
-    line-height: 1.6;
-    max-width: 60%;
+    line-height: 2.5;
+    max-width: 48%;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: backInLeft ; 
+    animation-duration: 1s;
+    margin-left: 48px;
+    
   }
   
   .image-wrapper {
@@ -71,6 +84,7 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     border: 3px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
+    animation: backInRight 1s;
   }
   
   /* Media queries for responsiveness */
@@ -130,3 +144,78 @@ body {
       width: 200px;
     }
   }
+  .container{
+    position: relative;
+  }
+  .shape {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-size: 300px 300px;
+    border-radius: 80% 20% 32% 68% / 58% 22% 78% 42%;
+    height: 500px;
+    width: 500px;
+    background: linear-gradient(to right, #203a43, #6c5b7b, #c06c84);
+    animation: jello 1.2s ease, moveOut 2s ease 1.2s forwards;
+    opacity: 1;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the text */
+  }
+  
+  .text {
+    font-size: 5rem; /* Adjust the font size as needed */
+    color: white; /* Set text color */
+    font-weight: bold; /* Make the text bold */
+    animation: vanishText 1s ease 1s forwards; /* Link the fade out animation to moveOut */
+    font-family: "Satisfy", cursive;
+  font-weight: 400;
+  font-style: normal;
+  }
+  
+  /* Animate.css jello effect */
+  @keyframes jello {
+    0% { transform: translate(-50%, -50%) scale3d(1, 1, 1); }
+    30% { transform: translate(-50%, -50%) scale3d(1.25, 0.75, 1); }
+    40% { transform: translate(-50%, -50%) scale3d(0.75, 1.25, 1); }
+    50% { transform: translate(-50%, -50%) scale3d(1.15, 0.85, 1); }
+    65% { transform: translate(-50%, -50%) scale3d(.95, 1.05, 1); }
+    75% { transform: translate(-50%, -50%) scale3d(1.05, .95, 1); }
+    100% { transform: translate(-50%, -50%) scale3d(1, 1, 1); }
+  }
+  
+  /* Move the shape from center to bottom-left corner with fading */
+  @keyframes moveOut {
+    from {
+      transform: translate(0%, 0%); /* Start from the center */
+      opacity: 1; /* Full opacity */
+    }
+    to {
+      transform: translate(-50%, 50%); /* Move to the bottom-left corner */
+      opacity: 0.7; /* Fade to 30% opacity */
+    }
+  }
+  
+  /* Animate the text to vanish */
+  @keyframes vanishText {
+    from {
+      opacity: 1; /* Text is visible initially */
+    }
+    to {
+      opacity: 0; /* Text fades to invisible */
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

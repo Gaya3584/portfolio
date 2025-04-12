@@ -1,0 +1,23 @@
+.mid-section {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .social-icons {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .social-icons a {
+    color: #203a43; /* base color */
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    transform: scale(1.2);
+    color: #c06c84; /* hover color */
+  }
+  
