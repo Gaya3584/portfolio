@@ -1,23 +1,254 @@
 .mid-section {
     text-align: center;
-    margin-top: 2rem;
-  }
-  
-  .social-icons {
-    font-size: 2rem;
+    padding: 2rem;
+    position: relative;
+    overflow: visible;
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
+    align-items: center;
+    gap: 2rem; /* Increased gap to create more spacing */
   }
   
-  .social-icons a {
-    color: #203a43; /* base color */
-    transition: transform 0.3s ease, color 0.3s ease;
+  .connect-info {
+    background-color: #f3f3f3;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    border-left: 4px solid #203a43;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    max-width: auto;
+    transition: all 0.3s ease;
+    margin-right: 2rem; /* Added margin to push it to the left */
+    position: relative;
+    z-index: 15; /* Higher than button to ensure it stays visible */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(-20px); /* Start position for animation */
+    transition: opacity 1s ease, transform 1s ease;
+    margin-top: 30px;
   }
   
-  .social-icons a:hover {
-    transform: scale(1.2);
-    color: #c06c84; /* hover color */
+  .connect-info.visible {
+    opacity: 1; /* Make visible when in view */
+    transform: translateY(0); /* Bring to original position */
   }
   
+  .connect-info p {
+    margin: 0;
+    font-size: 2rem;
+    color: #333;
+    font-family: "Satisfy", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .button-container {
+    position: relative;
+    width: 150px; /* Reduced from 200px */
+    height: 150px; /* Reduced from 200px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .connect-button {
+    margin-top: 30px;
+    background-color: #203a43;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 70px;
+    width: 70px;
+    font-family: "Winky Rough", sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .connect-button:hover {
+    background-color: #c06c84;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Social icons positioned in a circle around the button */
+  .social-icons {
+    margin-top: 30px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+  
+  .social-icons .icon-link {
+    color: #203a43;
+    position: absolute;
+    opacity: 0;
+    font-size: 2rem;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f3f3f3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Positioning for each icon in a circular pattern */
+  .social-icons .github {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px) scale(0.8);
+    transition-delay: 0.1s;
+  }
+  
+  .social-icons .linkedin {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) translateX(20px) scale(0.8);
+    transition-delay: 0.2s;
+  }
+  
+  .social-icons .instagram {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px) scale(0.8);
+    transition-delay: 0.3s;
+  }
+  
+  .social-icons .devpost {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) translateX(-20px) scale(0.8);
+    transition-delay: 0.4s;
+  }
+  
+  /* Active state when icons are shown - reduced spread distance from 60px to 45px */
+  .social-icons.active .icon-link {
+    opacity: 1;
+  }
+  
+  .social-icons.active .github {
+    transform: translateX(-50%) translateY(-45px) scale(1);
+  }
+  
+  .social-icons.active .linkedin {
+    transform: translateY(-50%) translateX(45px) scale(1);
+  }
+  
+  .social-icons.active .instagram {
+    transform: translateX(-50%) translateY(45px) scale(1);
+  }
+  
+  .social-icons.active .devpost {
+    transform: translateY(-50%) translateX(-45px) scale(1);
+  }
+  
+  .social-icons .icon-link:hover {
+    color: #c06c84;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: pulse 0.6s infinite alternate;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+  
+  /* Button animation when clicked */
+  .connect-button.active {
+    background-color: #c06c84;
+    animation: buttonPop 0.5s forwards;
+  }
+  
+  @keyframes buttonPop {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Info box animation when button is clicked */
+  .connect-info:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-left-color: #c06c84;
+  }
+  
+  /* Add a subtle background effect that doesn't overlap */
+  .mid-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(192, 108, 132, 0.1), transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .mid-section.active::before {
+    width: 150px; /* Reduced from 200px */
+    height: 150px; /* Reduced from 200px */
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .mid-section {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .connect-info {
+      margin-right: 0;
+      margin-bottom: 1rem;
+      max-width: 90%;
+    }
+  
+    .button-container {
+      width: 140px;
+      height: 140px;
+    }
+  
+    .social-icons.active .github {
+      transform: translateX(-50%) translateY(-40px) scale(1);
+    }
+  
+    .social-icons.active .linkedin {
+      transform: translateY(-50%) translateX(40px) scale(1);
+    }
+  
+    .social-icons.active .instagram {
+      transform: translateX(-50%) translateY(40px) scale(1);
+    }
+  
+    .social-icons.active .devpost {
+      transform: translateY(-50%) translateX(-40px) scale(1);
+    }
+  }
