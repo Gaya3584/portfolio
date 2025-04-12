@@ -1,23 +1,33 @@
-/* Nav.css */
 .navbar {
-    background-color: #111;
-    padding: 1rem;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-  }
-  
-  .nav-links li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .nav-links li a:hover {
-    color: #00ffcc;
-  }
-  
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  padding: 1rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  color: white;
+  font-family: "Winky Rough", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600; /* Or adjust to fit your font's available weights */
+  font-style: normal;
+  text-decoration: none;
+  font-size: 1.4rem;         /* Increased font size */
+  letter-spacing: 1.2px;     /* More spacing between letters */
+  margin: 0 1rem;            /* Space between nav items */
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-links li a:hover {
+  color: #a8dadc;
+  transform: scale(1.05);
+}
+
+
