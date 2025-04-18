@@ -26,33 +26,41 @@ const Contact = () => {
     }));
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // This is where you would typically handle form submission
-    // For now, we'll just simulate a successful submission
-    setFormStatus({
-      submitted: true,
-      success: true,
-      message: 'Message sent successfully! I will get back to you soon.'
-    });
-    
-    // Reset form after successful submission
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
-    
-    // Reset form status after 5 seconds
-    setTimeout(() => {
-      setFormStatus({
-        submitted: false,
-        success: false,
-        message: ''
+  
+    try {
+      const response = await fetch('https://formspree.io/f/xpwpgkpy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
       });
+  
+      if (response.ok) {
+        setFormStatus({
+          submitted: true,
+          success: true,
+          message: 'Message sent successfully! I will get back to you soon.'
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Failed to send message.');
+      }
+    } catch (error) {
+      setFormStatus({
+        submitted: true,
+        success: false,
+        message: 'Something went wrong. Please try again later.'
+      });
+    }
+  
+    setTimeout(() => {
+      setFormStatus({ submitted: false, success: false, message: '' });
     }, 5000);
   };
+  
   const [showIcons, setShowIcons] = useState(false);
 
   return (
